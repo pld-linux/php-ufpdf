@@ -12,6 +12,7 @@ Source0:	http://www.acko.net/files/%{name}.zip
 Source1:	%{name}-draw.php
 # Source1-md5:	c8ff16105021bb1edc2023a3c9e4be19
 URL:		http://acko.net/node/56
+BuildRequires:	unzip
 Requires:	fpdf
 Requires:	php-common
 BuildArch:	noarch
