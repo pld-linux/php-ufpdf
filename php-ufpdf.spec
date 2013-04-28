@@ -9,8 +9,8 @@ Group:		Libraries
 Source0:	http://www.acko.net/files/ufpdf.zip
 # Source0-md5:	1ae3792810334c15dcec3773b4d5bf54
 # http://www.fpdf.de/downloads/addons/69/
-Source1:	ufpdf-draw.php
-# Source1-md5:	c8ff16105021bb1edc2023a3c9e4be19
+Source1:	http://www.fpdf.org/en/script/dl.php?id=69&f=tgz&/ufpdf-draw.tgz
+# Source1-md5:	4aa6f93a76b5911d711fa15cfeab4231
 URL:		http://acko.net/node/56
 BuildRequires:	sed >= 4.0
 BuildRequires:	unzip
@@ -37,20 +37,20 @@ UFPDF, rozszerzenie FPDF pozwalające na akceptowanie danych
 wejściowych w UTF-8.
 
 %prep
-%setup -q -n %{name}
+%setup -q -n ufpdf -a1
 
-sed -i -e 's#fpdf.php#fpdf/fpdf.php#g' ufpdf.php
+sed -i -e 's#fpdf.php#fpdf/fpdf.php#g' ufpdf.php draw/*.php
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{php_data_dir}/ufpdf
 cp -p ufpdf.php $RPM_BUILD_ROOT%{php_data_dir}/ufpdf/ufpdf.php
-cp -p %{SOURCE1} $RPM_BUILD_ROOT%{php_data_dir}/ufpdf/udraw.php
+cp -p draw/draw.php $RPM_BUILD_ROOT%{php_data_dir}/ufpdf/udraw.php
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.txt ufpdf-test.php tools/*.php
+%doc README.txt ufpdf-test.php tools/*.php draw/ex.php
 %{php_data_dir}/ufpdf
